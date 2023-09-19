@@ -33,6 +33,8 @@ function LoginForm() {
   return (
     <div className={styles.div}>
       <form className={styles.form} onSubmit={handleSubmit}>
+      <h5 className="mb-3"style={{color:"#007bff"}}>Image gallery Application</h5>
+
         <input
           type="email"
           value={email}

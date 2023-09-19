@@ -1,0 +1,30 @@
+.image-card {
+  width: 100%;
+  max-width: 20rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.image-card img {
+  object-fit: cover;
+  height: 50%;
+}
+
+.image-card-body {
+  background-color: #4186cf;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Media query for smaller screens like mobile devices */
+@media (max-width: 576px) {
+  .image-card {
+    max-width: 100%;
+  }
+
+  .image-card img {
+    height: auto;
+  }
+}

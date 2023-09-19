@@ -1,0 +1,53 @@
+[
+  {
+    "id": "oem64GHBGH8",
+    "title": "Palm Oasis",
+    "description": "Date palms in Wadi Sharma, NEOM, Saudi Arabia.",
+    "alt_description": "a woman standing between two palm trees",
+    "tags": ["date palms", "Wadi Sharma", "NEOM", "Saudi Arabia"],
+    "imageSrc": "https://images.unsplash.com/photo-1502759683299-cdcd6974244f?auto=format&fit=crop&w=440&h=220&q=60"
+  },
+  {
+    "id": "6JbuzsbPhnA",
+    "title": "Forest Walkway",
+    "description": "Elevated wooden path through dense forest.",
+    "alt_description": "a wooden walkway in the middle of a forest",
+    "tags": ["wooden walkway", "forest"],
+    "imageSrc": "https://images.unsplash.com/photo-1536782376847-5c9d14d97cc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZnJlZXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+  },
+
+  {
+    "id": "randomID1",
+    "title": "Urban Nightlife",
+    "description": "City skyline illuminated with vibrant lights.",
+    "alt_description": "city buildings with bright lights at night",
+    "tags": ["city", "night", "lights"],
+    "imageSrc": "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8fA%3D%3D&w=1000&q=80"
+  },
+  {
+    "id": "randomID0",
+    "title": "Apple",
+    "description": "City skyline illuminated with vibrant lights.",
+    "alt_description": "city buildings with bright lights at night",
+    "tags": ["city", "night", "lights"],
+    "imageSrc": "https://plus.unsplash.com/premium_photo-1661956135713-f93a5a95904d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGFyaXMlMjBhdCUyMG5pZ2h0fGVufDB8fDB8fHww&w=1000&q=80"
+  },
+
+
+  {
+    "id": "randomID9",
+    "title": "Mountain View",
+    "description": "Breathtaking view of the snow-capped mountains.",
+    "alt_description": "majestic mountains in the background",
+    "tags": ["mountains", "snow", "landscape"],
+    "imageSrc": "https://images.unsplash.com/photo-1505968409348-bd000797c92e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"
+  },
+  {
+    "id": "randoID10",
+    "title": "Urban Nightlife",
+    "description": "City skyline illuminated with vibrant lights.",
+    "alt_description": "city buildings with bright lights at night",
+    "tags": ["city", "night", "lights"],
+    "imageSrc": "https://plus.unsplash.com/premium_photo-1661956135713-f93a5a95904d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGFyaXMlMjBhdCUyMG5pZ2h0fGVufDB8fDB8fHww&w=1000&q=80"
+  }
+]
