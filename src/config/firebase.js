@@ -4,14 +4,15 @@ import { getAuth, signInWithEmailAndPassword as signInWithEmail, signOut as auth
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC7IUISm0gAmhDZe7loAxhzkw2tiku4E9o",
-  authDomain: "gallery-image-e3e49.firebaseapp.com",
-  projectId: "gallery-image-e3e49",
-  storageBucket: "gallery-image-e3e49.appspot.com",
-  messagingSenderId: "548049402311",
-  appId: "1:548049402311:web:f6f0ec547a940a0fac41e2",
-  measurementId: "G-V81NLE5MJR",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
