@@ -3,6 +3,8 @@ import { auth } from "../../config/firebase";
 import { LoadingData } from "../Loading/LoadingData";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageCard from "../Gallery/ImageCard/ImageCard";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 import imageData from "../../data.json"; // Importing the JSON data
 
@@ -37,6 +39,13 @@ function HomePage() {
     }
   };
 
+  const moveImage = (fromIndex, toIndex) => {
+    const updatedImages = [...filteredImages];
+    const [movedImage] = updatedImages.splice(fromIndex, 1);
+    updatedImages.splice(toIndex, 0, movedImage);
+    setImages(updatedImages);
+  };
+
   const filteredImages = images.filter((image) =>
     image.tags.join(", ").toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -46,33 +55,39 @@ function HomePage() {
   if (!user) return <div>Please log in to view the gallery.</div>;
 
   return (
-    <div>
-      <div className="container text-center mt-4">
-        <div className="row align-items-center">
-          <div className="col-12 col-md-4">
-            <h1>Image Gallery</h1>
-          </div>
-          <div className="col-12 col-md-4 mt-3 mt-md-0">
-            <SearchBar setSearchTerm={setSearchTerm} />
-          </div>
-          <div className="col-12 col-md-4 mt-3 mt-md-0">
-            <button onClick={handleLogout} className="btn btn-danger">
-              Logout
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <div className="row">
-          {filteredImages.map((image, index) => (
-            <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
-              <ImageCard imageData={image} />
+    <DndProvider backend={HTML5Backend}>
+      <div>
+        <div className="container text-center mt-4">
+          <div className="row align-items-center">
+            <div className="col-12 col-md-4">
+              <h1>Image Gallery</h1>
             </div>
-          ))}
+            <div className="col-12 col-md-4 mt-3 mt-md-0">
+              <SearchBar setSearchTerm={setSearchTerm} />
+            </div>
+            <div className="col-12 col-md-4 mt-3 mt-md-0">
+              <button onClick={handleLogout} className="btn btn-danger">
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="container">
+          <div className="row">
+            {filteredImages.map((image, index) => (
+              <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
+                <ImageCard
+                  imageData={image}
+                  index={index}
+                  moveImage={moveImage}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </DndProvider>
   );
 }
 

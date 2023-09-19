@@ -1,6 +1,6 @@
 .image-card {
   width: 100%;
-  max-width: 20rem;
+  /* max-width: 20rem; */
   height: 100%;
   box-sizing: border-box;
 }

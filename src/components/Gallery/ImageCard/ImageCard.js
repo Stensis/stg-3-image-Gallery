@@ -1,9 +1,42 @@
 import React from "react";
-import "./ImageCard.css"
+import { useDrag, useDrop } from "react-dnd";
+import "./ImageCard.css";
 
-const ImageCard = ({ imageData }) => {
+const ImageCard = ({ imageData, moveImage, index }) => {
+  const ref = React.useRef(null);
+
+  const [, drop] = useDrop({
+    accept: "image",
+    hover(item) {
+      if (!ref.current) {
+        return;
+      }
+      const dragIndex = item.index;
+      const hoverIndex = index;
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+      moveImage(dragIndex, hoverIndex);
+      item.index = hoverIndex;
+    },
+  });
+
+  const [{ isDragging }, drag] = useDrag({
+    type: "image",
+    item: { index },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+
+  drag(drop(ref));
+
   return (
-    <div className="card mt-5 image-card">
+    <div
+      ref={ref}
+      style={{ opacity: isDragging ? 0 : 1 }}
+      className="card mt-5 image-card"
+    >
       <img
         src={imageData.imageSrc}
         className="card-img-top"
@@ -11,8 +44,10 @@ const ImageCard = ({ imageData }) => {
       />
       <div className="card-body image-card-body">
         <h5 className="card-title">{imageData.title}</h5>
-        <p><small className="text-muted">{imageData.description}</small></p>
-        
+        <p>
+          <small className="text-muted">{imageData.description}</small>
+        </p>
+
         <div className="tags">
           <span>Tags:</span>
           {imageData.tags.map((tag, index) => (
