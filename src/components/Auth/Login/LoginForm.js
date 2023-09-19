@@ -12,11 +12,23 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (email !== "user@example.com" || password !== "1Password") {
-      setError("Invalid credentials!");
+    if (!email) {
+      setError("Email is required!");
       return;
     }
-    if (!email.includes("@") || password === "") {
+
+    if (!email.includes("@")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!password) {
+      setError("Password is required!");
+      return;
+    }
+
+    // Check for correct credentials
+    if (email !== "user@example.com" || password !== "1Password") {
       setError("Invalid credentials!");
       return;
     }
@@ -26,14 +38,16 @@ function LoginForm() {
     if (response.success) {
       navigate("/");
     } else {
-      setError("");
+      setError("An error occurred while logging in. Please try again.");
     }
   };
 
   return (
     <div className={styles.div}>
       <form className={styles.form} onSubmit={handleSubmit}>
-      <h5 className="mb-3"style={{color:"#007bff"}}>Image gallery Application</h5>
+        <h5 className="mb-3" style={{ color: "#007bff" }}>
+          Image gallery Application
+        </h5>
 
         <input
           type="email"

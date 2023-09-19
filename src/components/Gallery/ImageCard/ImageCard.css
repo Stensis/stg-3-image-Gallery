@@ -1,7 +1,6 @@
 .image-card {
-  margin: 0; /* Remove the quotes */
-  margin-bottom: 10px;
-  width: 100%; /* Remove the quotes */
+  margin: 0; 
+  width: 100%; 
   height: 100%;
   box-sizing: border-box;
 }
