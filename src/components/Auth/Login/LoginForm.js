@@ -27,7 +27,6 @@ function LoginForm() {
       return;
     }
 
-    // Check for correct credentials
     if (email !== "user@example.com" || password !== "1Password") {
       setError("Invalid credentials!");
       return;

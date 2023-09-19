@@ -5,8 +5,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import ImageCard from "../Gallery/ImageCard/ImageCard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+// import "./HomePage.css"
 
-import imageData from "../../data.json"; 
+import imageData from "../../data.json";
 
 function HomePage() {
   const [user, setUser] = useState(null);
@@ -55,11 +56,13 @@ function HomePage() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div style={{margin:"0"}}>
-        <div className="container text-center mt-4">
+      <div>
+        <div className="container text-center mt-5">
           <div className="row align-items-center">
-            <div className="col-12 col-md-4">
-              <h1>Image Gallery</h1>
+            <div
+              className="col-12 col-md-4"
+            >
+              <h1 className="fw-3">Image Gallery</h1>
             </div>
             <div className="col-12 col-md-4 mt-3 mt-md-0">
               <SearchBar setSearchTerm={setSearchTerm} />
@@ -72,7 +75,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="container">
+        <div className="m-5">
           <div className="row">
             {filteredImages.map((image, index) => (
               <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
