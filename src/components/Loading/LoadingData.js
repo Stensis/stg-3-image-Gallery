@@ -6,7 +6,6 @@ export function LoadingData() {
     <div className={Styles.loadingData}>
       <div className={Styles.loadingIcon}></div>
       Loading Images...
-      
     </div>
   );
 }

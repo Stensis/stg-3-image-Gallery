@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { signInUserWithEmailAndPassword } from "../../../config/firebase";
 import { useNavigate } from "react-router-dom";
-import "./LoginForm.css";
+import styles from "./LoginForm.module.css";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -24,21 +24,22 @@ function LoginForm() {
     const response = await signInUserWithEmailAndPassword(email, password);
 
     if (response.success) {
-      navigate("/"); 
+      navigate("/");
     } else {
       setError("");
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.div}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
+          className={styles.input}
         />
         <input
           type="password"
@@ -46,9 +47,12 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
+          className={styles.input}
         />
-        {error && <p>{error}</p>}
-        <button type="submit">Login</button>
+        {error && <p className={styles.p}>{error}</p>}
+        <button className={styles.button} type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

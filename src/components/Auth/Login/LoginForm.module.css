@@ -1,5 +1,5 @@
 /* General styles for the LoginForm component */
-div {
+.div {
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -8,7 +8,7 @@ div {
   background-color: #e9ecef;
 }
 
-form {
+.form {
   background-color: #fff;
   padding: 40px;
   border-radius: 10px;
@@ -17,8 +17,7 @@ form {
   text-align: center;
 }
 
-input[type="email"],
-input[type="password"] {
+.input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -26,7 +25,7 @@ input[type="password"] {
   border-radius: 5px;
 }
 
-button {
+.button {
   display: block;
   width: 100%;
   padding: 10px;
@@ -38,11 +37,11 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.button:hover {
   background-color: #0056b3;
 }
 
-p {
+.p {
   color: red;
   margin-bottom: 10px;
   font-size: 0.9em;
