@@ -1,6 +1,7 @@
 .image-card {
-  width: 100%;
-  /* max-width: 20rem; */
+  margin: 0; /* Remove the quotes */
+  margin-bottom: 10px;
+  width: 100%; /* Remove the quotes */
   height: 100%;
   box-sizing: border-box;
 }
@@ -17,8 +18,17 @@
   flex-direction: column;
   justify-content: center;
 }
+.image-card:hover {
+  transform: scale(1.03);
+  transition: transform 0.2s ease-out;
+}
 
-/* Media query for smaller screens like mobile devices */
+/* animation */
+.image-card.dragging {
+  opacity: 0.5;
+  transition: opacity 0.2s ease-out;
+}
+
 @media (max-width: 576px) {
   .image-card {
     max-width: 100%;

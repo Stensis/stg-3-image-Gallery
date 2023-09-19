@@ -31,12 +31,16 @@ const ImageCard = ({ imageData, moveImage, index }) => {
 
   drag(drop(ref));
 
+  const cardClassName = isDragging
+    ? "card mt-5 image-card dragging"
+    : "card mt-5 image-card";
+
   return (
     <div
-      ref={ref}
-      style={{ opacity: isDragging ? 0 : 1 }}
-      className="card mt-5 image-card"
-    >
+    ref={ref}
+    className={cardClassName} 
+    style={{ opacity: isDragging ? 0.5 : 1 }}
+  >
       <img
         src={imageData.imageSrc}
         className="card-img-top"

@@ -6,7 +6,7 @@ import ImageCard from "../Gallery/ImageCard/ImageCard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-import imageData from "../../data.json"; // Importing the JSON data
+import imageData from "../../data.json"; 
 
 function HomePage() {
   const [user, setUser] = useState(null);
@@ -25,7 +25,6 @@ function HomePage() {
       }
     });
 
-    // Use the imported JSON data directly instead of fetching it from the Pixabay API
     setImages(imageData);
 
     return () => unsubscribe();
@@ -56,7 +55,7 @@ function HomePage() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
+      <div style={{margin:"0"}}>
         <div className="container text-center mt-4">
           <div className="row align-items-center">
             <div className="col-12 col-md-4">
