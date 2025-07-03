@@ -5,9 +5,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import ImageCard from "../Gallery/ImageCard/ImageCard";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-// import "./HomePage.css"
-
 import imageData from "../../data.json";
+import "./HomePage.css";
 
 function HomePage() {
   const [user, setUser] = useState(null);
@@ -17,17 +16,11 @@ function HomePage() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-        setLoading(false);
-      } else {
-        setUser(null);
-        setLoading(false);
-      }
+      setUser(user || null);
+      setLoading(false);
     });
 
     setImages(imageData);
-
     return () => unsubscribe();
   }, []);
 
@@ -51,43 +44,45 @@ function HomePage() {
   );
 
   if (loading) return <LoadingData />;
-
-  if (!user) return <div>Please log in to view the gallery.</div>;
+  if (!user)
+    return (
+      <div className="not-logged-in">🔒 Please log in to view the gallery.</div>
+    );
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div>
-        <div className="container text-center mt-5">
-          <div className="row align-items-center">
-            <div
-              className="col-12 col-md-4"
-            >
-              <h1 className="fw-3">Image Gallery</h1>
-            </div>
-            <div className="col-12 col-md-4 mt-3 mt-md-0">
-              <SearchBar setSearchTerm={setSearchTerm} />
-            </div>
-            <div className="col-12 col-md-4 mt-3 mt-md-0">
-              <button onClick={handleLogout} className="btn btn-danger">
-                Logout
-              </button>
-            </div>
+      <div className="homepage">
+        <header className="header">
+          <div className="logo-section">
+            <h1 className="logo">🖼️ Image Gallery</h1>
+            <span className="drag-hint">✨ Drag & drop images to reorder</span>
           </div>
-        </div>
 
-        <div className="m-5">
-          <div className="row">
-            {filteredImages.map((image, index) => (
-              <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={index}>
+          <SearchBar setSearchTerm={setSearchTerm} />
+
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </header>
+
+        <main className="gallery-wrapper">
+          {filteredImages.length === 0 ? (
+            <p className="not-found">
+              😢 No images found matching your search.
+            </p>
+          ) : (
+            <div className="gallery-grid">
+              {filteredImages.map((image, index) => (
                 <ImageCard
+                  key={index}
                   imageData={image}
                   index={index}
                   moveImage={moveImage}
                 />
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          )}
+        </main>
       </div>
     </DndProvider>
   );

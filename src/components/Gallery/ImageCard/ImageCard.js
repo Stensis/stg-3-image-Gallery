@@ -8,14 +8,11 @@ const ImageCard = ({ imageData, moveImage, index }) => {
   const [, drop] = useDrop({
     accept: "image",
     hover(item) {
-      if (!ref.current) {
-        return;
-      }
+      if (!ref.current) return;
       const dragIndex = item.index;
       const hoverIndex = index;
-      if (dragIndex === hoverIndex) {
-        return;
-      }
+      if (dragIndex === hoverIndex) return;
+
       moveImage(dragIndex, hoverIndex);
       item.index = hoverIndex;
     },
@@ -31,35 +28,29 @@ const ImageCard = ({ imageData, moveImage, index }) => {
 
   drag(drop(ref));
 
-  const cardClassName = isDragging
-    ? "card mt-5 mb-3 image-card dragging"
-    : "card mt-5 image-card";
-
   return (
     <div
       ref={ref}
-      className={cardClassName}
-      style={{ opacity: isDragging ? 0.5 : 1 }}
+      className={`image-card ${isDragging ? "dragging" : ""}`}
+      style={{ opacity: isDragging ? 0.6 : 1 }}
     >
       <img
         src={imageData.imageSrc}
-        className="card-img-top"
-        alt={imageData.alt_description}
+        className="image-card-img"
+        alt={imageData.alt_description || "Gallery Image"}
       />
-      <div className="card-body image-card-body">
-        <h5 className="card-title">{imageData.title}</h5>
-        <p>
-          <small className="text-muted">{imageData.description}</small>
-        </p>
+      <div className="image-card-body">
+        <h5 className="image-card-title">{imageData.title}</h5>
+        <p className="image-card-desc">{imageData.description}</p>
 
         <div className="tags">
-          <span>Tags:</span>
-          {imageData.tags.map((tag, index) => (
-            <span key={index} className="tag badge badge-light mr-2">
-              {tag}
+          {imageData.tags.map((tag, idx) => (
+            <span key={idx} className="tag-chip">
+              #{tag}
             </span>
           ))}
         </div>
+        
       </div>
     </div>
   );

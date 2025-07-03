@@ -7,66 +7,70 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // ✅ loading state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true); // ✅ start loading
 
-    if (!email) {
-      setError("Email is required!");
-      return;
-    }
-
-    if (!email.includes("@")) {
+    if (!email || !email.includes("@")) {
       setError("Please enter a valid email address.");
+      setLoading(false); // ✅ stop loading on early exit
       return;
     }
 
     if (!password) {
-      setError("Password is required!");
+      setError("Password is required.");
+      setLoading(false); // ✅ stop loading
       return;
     }
 
-    if (email !== "user@example.com" || password !== "1Password") {
-      setError("Invalid credentials!");
-      return;
-    }
+    try {
+      const response = await signInUserWithEmailAndPassword(email, password);
 
-    const response = await signInUserWithEmailAndPassword(email, password);
-
-    if (response.success) {
-      navigate("/");
-    } else {
-      setError("An error occurred while logging in. Please try again.");
+      if (response?.success) {
+        navigate("/");
+      } else {
+        setError("Invalid credentials or user not found.");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false); // ✅ stop loading after request
     }
   };
 
   return (
-    <div className={styles.div}>
+    <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h5 className="mb-3" style={{ color: "#007bff" }}>
-          Image gallery Application
-        </h5>
+        <h2 className={styles.title}>🎨 Welcome Back</h2>
+        <p className={styles.subtitle}>Login to your Image Gallery</p>
+        <p>Email: <strong>user@example.com</strong></p>
+        <p>Password: <strong>1Password</strong></p>
 
         <input
           type="email"
+          placeholder="📧 Email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
           className={styles.input}
+          disabled={loading}
         />
         <input
           type="password"
+          placeholder="🔒 Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
           className={styles.input}
+          disabled={loading}
         />
-        {error && <p className={styles.p}>{error}</p>}
-        <button className={styles.button} type="submit">
-          Login
+
+        {error && <p className={styles.error}>{error}</p>}
+
+        <button type="submit" className={styles.button} disabled={loading}>
+          {loading ? "Logging in..." : "🚀 Login"}
         </button>
       </form>
     </div>
